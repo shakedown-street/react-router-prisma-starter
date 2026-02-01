@@ -1,6 +1,7 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 import type { Route } from './+types/root';
 import './app.css';
+import { Nav } from './components/Nav/Nav';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -33,8 +34,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+export function meta({}: Route.MetaArgs) {
+  return [{ title: 'React Router Template' }];
+}
+
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <Nav />
+      <Outlet />
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
